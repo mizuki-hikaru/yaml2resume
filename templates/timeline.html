@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    body { font-family: 'Arial', sans-serif; font-size: 10pt; padding: 2cm; }
+    .timeline { border-left: 3px solid #333; padding-left: 1cm; }
+    .event { margin-bottom: 1.5em; position: relative; }
+    .event:before { content: ""; position: absolute; left: -3.3em; top: 0; width: 10px; height: 10px; background: #333; border-radius: 50%; }
+  </style>
+</head>
+<body>
+  <h1>{{ name }}</h1>
+  <p>{{ email }} | {{ phone }} | {{ location }}</p>
+
+  <h2>Professional Experience</h2>
+  <div class="timeline">
+    {% for job in experience %}
+    <div class="event">
+      <strong>{{ job.title }}</strong> at {{ job.company }} ({{ job.start }} - {{ job.end }})<br>
+      {{ job.description }}
+    </div>
+    {% endfor %}
+  </div>
+
+  <h2>Education</h2>
+  <div class="timeline">
+    {% for edu in education %}
+    <div class="event">
+      <strong>{{ edu.degree }}</strong> from {{ edu.institution }} ({{ edu.year }})
+    </div>
+    {% endfor %}
+  </div>
+</body>
+</html>

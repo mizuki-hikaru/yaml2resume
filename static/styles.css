@@ -1,0 +1,198 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: sans-serif;
+  color: #111;
+  background: #fafafa;
+  line-height: 1.6;
+}
+
+.site-header {
+  margin: 0 0 4rem -1rem;
+}
+
+.cross-header {
+  position: relative;
+  padding: 1rem;
+  margin: 0 auto;
+  border-bottom: 1px solid black;
+  font-family: sans-serif;
+  font-size: 2rem;
+  font-weight: normal;
+  width: max-content;
+}
+
+/* Left vertical bar */
+.cross-header::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 1px;
+  height: 150%; /* extends below the bottom border */
+  background: black;
+}
+
+/* Bottom horizontal extension */
+.cross-header::after {
+  content: "";
+  position: absolute;
+  left: -2rem; /* extend beyond the left border */
+  bottom: -1px;
+  width: 2rem;
+  height: 1px;
+  background: black;
+}
+
+main {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+section {
+  margin-bottom: 3rem;
+}
+
+h2 {
+  font-weight: normal;
+  margin-bottom: 0.5rem;
+}
+
+a, a:visited {
+  color: #007acc;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+pre {
+  padding: 1rem;
+  border: 1px solid #ccc;
+}
+
+.projects .project {
+  display: flex;
+  gap: 1.5rem;
+  border: 1px solid #ccc;
+  padding: 1rem;
+  margin-top: 1.5rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.image-container {
+  flex: 1 1 250px;
+  background: #000;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  max-width: 300px;
+  position: relative;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.image-container:hover {
+  transform: scale(1.02);
+}
+
+.image-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  background-color: black;
+}
+
+.project-info {
+  flex: 2 1 300px;
+}
+
+.project-info h3 {
+  margin: 0.5rem 0;
+}
+
+.btn {
+  margin-right: 0.5rem;
+  padding: 0.4rem 0.8rem;
+  background: #eee;
+  text-decoration: none;
+  border-radius: 4px;
+  font-size: 0.9rem;
+}
+
+.btn:hover {
+  background: #ccc;
+}
+
+/* Modal styles */
+.modal {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw; height: 100vh;
+  background: rgba(0, 0, 0, 0.85);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 999;
+}
+
+.modal.show {
+  visibility: visible;
+  opacity: 1;
+}
+
+.modal img {
+  max-width: 90vw;
+  max-height: 90vh;
+  object-fit: contain;
+  background: black;
+  padding: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+  transition: transform 0.3s ease;
+}
+
+.modal-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  font-size: 2rem;
+  color: white;
+  cursor: pointer;
+}
+
+.file-drop {
+  border: 2px dashed #ccc;
+  border-radius: 1rem;
+  padding: 2rem;
+  text-align: center;
+  cursor: pointer;
+  transition: border-color 0.3s ease;
+  font-family: sans-serif;
+  background-color: #fafafa;
+  color: #333;
+  max-width: 400px;
+  margin: 2rem auto;
+}
+
+.file-drop.dragover {
+  border-color: #007bff;
+  background-color: #eaf4ff;
+}
+
+.file-drop .file-input {
+  display: none;
+}
+
+.file-drop .file-select {
+  color: #007acc;
+  cursor: pointer;
+}

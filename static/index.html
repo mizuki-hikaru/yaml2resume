@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Resume Renderer</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main>
+    <header class="site-header">
+      <h1 class="cross-header">Resume Renderer</h1>
+    </header>
+
+    <p>I keep my resume content in <a href="/resume.yaml">a simple YAML
+      file</a> and use a separate <a href="/resume.html">Jinja2 HTML
+      template</a> to define the structure and style. I run a script to
+    convert those two into a final HTML document, which I then convert to
+    PDF, ready for recruiters and potential employers to view.</p>
+    <p>This site exists to make that workflow available to others. Just
+    upload your YAML and get back a PDF.</p>
+
+    <div class="file-drop" id="dropzone">
+      <input type="file" id="fileInput" class="file-input" />
+      <p>
+        <strong>Drag and drop your YAML file here</strong>
+        <br/>or<br/>
+        <span class="file-select">click to select</span>
+      </p>
+    </div>
+
+    <section class="format">
+      <h2>YAML Format</h2>
+      <p>Here is a sample YAML file:</p>
+      <pre><code>title: Mizuki Hikaru
+position: Software Engineer
+location: Sydney, Australia
+email: mizuki@hikaru.org
+linkedin_username: mizukihikaru
+summary: A summary of your experience.
+core_competencies:
+  - Software Development Lifecycle
+  - Full Stack Development
+  - etc.
+technical_skills:
+  - Python
+  - JavaScript
+  - etc.
+experience:
+  - company: ACME Corporation
+    position: Chief YAML Officer
+    dates: January 2000 - present
+    location: Sydney, Australia
+    description:
+      - Wrote some YAML files.
+      - Wrote a script to convert YAML.
+      - etc.
+education:
+  - institution: University of Humour
+    qualification: Humour Science (BSc)
+    dates: February 2010 - March 2015
+awards:
+  - ACME funniest man alive award
+  - etc.</code></pre>
+  </main>
+
+  <!-- Modal -->
+  <div class="modal" id="imageModal">
+    <span class="modal-close" id="modalClose">&times;</span>
+    <img id="modalImage" src="" alt="Full view" />
+  </div>
+
+  <script>
+    const modal = document.getElementById('imageModal');
+    const modalImg = document.getElementById('modalImage');
+    const closeBtn = document.getElementById('modalClose');
+
+    document.querySelectorAll('.image-container img').forEach(img => {
+      img.addEventListener('click', () => {
+        modalImg.src = img.src;
+        modal.classList.add('show');
+      });
+    });
+
+    closeBtn.addEventListener('click', () => {
+      modal.classList.remove('show');
+    });
+
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        modal.classList.remove('show');
+      }
+    });
+
+    const dropzone = document.getElementById('dropzone');
+    const fileInput = document.getElementById('fileInput');
+
+    dropzone.addEventListener('click', () => fileInput.click());
+
+    dropzone.addEventListener('dragover', (e) => {
+      e.preventDefault();
+      dropzone.classList.add('dragover');
+    });
+
+    dropzone.addEventListener('dragleave', () => {
+      dropzone.classList.remove('dragover');
+    });
+
+    dropzone.addEventListener('drop', (e) => {
+      e.preventDefault();
+      dropzone.classList.remove('dragover');
+      const files = e.dataTransfer.files;
+      handleFiles(files);
+    });
+
+    fileInput.addEventListener('change', () => {
+      handleFiles(fileInput.files);
+    });
+
+    function handleFiles(files) {
+      if (!files || files.length === 0) return;
+
+      const file = files[0];
+      const formData = new FormData();
+      formData.append('file', file);
+
+      fetch('https://home.hikaru.org/resume-renderer', {
+        method: 'POST',
+        body: formData,
+      })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Upload failed with status ' + response.status);
+        }
+        return response.blob(); // we expect a binary file (like PDF)
+      })
+      .then(blob => {
+        // Create a temporary URL for the blob
+        const downloadUrl = URL.createObjectURL(blob);
+
+        // Create a temporary anchor tag to trigger download
+        const a = document.createElement('a');
+        a.href = downloadUrl;
+        a.download = 'resume.pdf'; // You can name the file whatever you want
+        document.body.appendChild(a);
+        a.click();
+
+        // Cleanup
+        a.remove();
+        URL.revokeObjectURL(downloadUrl);
+      })
+      .catch(error => {
+        console.error('Error uploading or downloading file:', error);
+        alert('There was an error generating your resume.');
+      });
+    }
+  </script>
+</body>
+</html>

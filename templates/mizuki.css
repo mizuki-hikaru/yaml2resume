@@ -2,7 +2,7 @@
   size: A4;
 }
 html {
-  font-size: {{ font_size | default('100%') }};
+  font-size: {{ _context['font-size'] | default('100%') }};
 }
 html, body {
   margin: 0;

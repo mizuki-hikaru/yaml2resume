@@ -12,9 +12,7 @@ import os
 app = FastAPI()
 
 @app.post("/yaml2resume")
-async def resume_renderer(file: UploadFile = File(...), background_tasks: BackgroundTasks = None):
-    template_path = Path.cwd()
-
+async def yaml2resume(file: UploadFile = File(...), background_tasks: BackgroundTasks = None):
     try:
         temp_dir = tempfile.mkdtemp()
         temp_path = Path(temp_dir)

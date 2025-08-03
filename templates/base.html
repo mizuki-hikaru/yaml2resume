@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+
+{% if not separator %}
+  {% set separator = '&bull;' %}
+{% endif %}
+{% set separator = separator | safe %}
+
+{% if not styles %}
+  {% set styles = 'mizuki.css' %}
+{% endif %}
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>{{ name }}</title>
+    <style>
+      {% include styles %}
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <div class="section header">
+        <h1>{{ name }}</h1>
+        {% set contact_details = [] %}
+        {% if profession %}
+          {% set contact_details = contact_details + [profession] %}
+        {% endif %}
+        {% if location %}
+          {% set contact_details = contact_details + [location] %}
+        {% endif %}
+        {% if email %}
+          {% set email = email | escape | safe %}
+          {% set email = ('<a href="mailto:' | safe) ~ email ~ ('">' | safe) ~ email ~ ('</a>' | safe) %}
+          {% set contact_details = contact_details + [email] %}
+        {% endif %}
+        {% if phone %}
+          {% set phone = phone | escape | safe %}
+          {% set phone = ('<a href="tel:' | safe) ~ (phone.replace(' ', '') | safe) ~ ('">' | safe) ~ phone ~ ('</a>' | safe) %}
+          {% set contact_details = contact_details + [phone] %}
+        {% endif %}
+        {% if linkedin %}
+          {% set linkedin = linkedin | escape | safe %}
+          {% if "https://" in linkedin %}
+            {% set linkedin = ('<a href="' | safe) ~ linkedin ~ ('">LinkedIn</a>' | safe) %}
+          {% else %}
+            {% set linkedin = ('<a href="https://linkedin.com/in/' | safe) ~ linkedin ~ ('">LinkedIn</a>' | safe) %}
+          {% endif %}
+          {% set contact_details = contact_details + [linkedin] %}
+        {% endif %}
+        {% if github %}
+          {% set github = github | escape | safe %}
+          {% if "https://" in github %}
+            {% set github = ('<a href="' | safe) ~ github ~ ('">GitHub</a>' | safe) %}
+          {% else %}
+            {% set github = ('<a href="https://github.com/' | safe) ~ github ~ ('">GitHub</a>' | safe) %}
+          {% endif %}
+          {% set contact_details = contact_details + [github] %}
+        {% endif %}
+        {% if contact_details %}
+          <p class="contact-details">
+            {{ contact_details | join((' ' | safe) ~ separator ~ (' ' | safe)) }}
+          </p>
+        {% endif %}
+      </div>
+
+      {% for section_name, section_value in _context.items() %}
+        {% set other_fields = ['template', 'font_size', 'name', 'profession', 'location', 'email', 'phone', 'linkedin', 'github'] %}
+        {% if section_name in other_fields %}
+        {% elif section_name == 'experience' %}
+          <div class="section experience">
+            <h2>Professional Experience</h2>
+            {% for job in experience %}
+              <div class="job">
+                <div class="job-header">
+                  <h3>
+                    <span class="job-title">{{ job.title }}</span>
+                    {{ separator }}
+                    <span class="job-company">{{ job.company }}</span>
+                  </h3>
+                  <p class="job-meta">
+                    {% if job.location %}<span class="job-location">{{ job.location }}</span>{% endif %}
+                    {% if job.location and job.start %}{{ separator }}{% endif %}
+                    {% if job.start %}<span class="job-dates">{{ job.start }} - {{ job.end | default('Present') }}</span>{% endif %}
+                  </p>
+                </div>
+                <div class="job-summary">
+                  {{ job.summary | markdown }}
+                </div>
+              </div>
+            {% endfor %}
+          </div>
+        {% elif section_name == 'education' %}
+          <div class="section education">
+            <h2>Education</h2>
+            {% for edu in education %}
+              <div class="education-item">
+                <h3>
+                  <span class="education-qualification">{{ edu.qualification }}</span>
+                  {{ separator }}
+                  <span class="education-institution">{{ edu.institution }}</span>
+                </h3>
+                {% if edu.start %}<p class="education-dates">{{ edu.start }} - {{ edu.end | default('Present') }}</p>{% endif %}
+              </div>
+            {% endfor %}
+          </div>
+        {% else %}
+          <div class="section {{ section_name.replace('_', '-') }}">
+            <h2>{{ section_name.replace('_', ' ').replace('-', ' ') | title }}</h2>
+            {% if section_value is string %}
+              {{ section_value | markdown }}
+            {% elif section_value is mapping %}
+              {% for subheading, value in section_value.items() %}
+                <h3>{{ subheading.replace('_', ' ').replace('-', ' ') | title }}</h3>
+                {% if value is string %}
+                  {{ value | markdown }}
+                {% elif value is sequence %}
+                  <ul>
+                    {% for item in value %}
+                      <li>{{ item }}</li>
+                    {% endfor %}
+                  </ul>
+                {% endif %}
+              {% endfor %}
+            {% elif section_value is sequence %}
+              <ul>
+                {% for item in section_value %}
+                  <li>{{ item }}</li>
+                {% endfor %}
+              </ul>
+            {% endif %}
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </body>
+</html>

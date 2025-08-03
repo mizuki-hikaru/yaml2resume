@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>{{ title }}</title>
+  <title>{{ name }}</title>
   <style>
     * {
       box-sizing: border-box;
@@ -60,7 +60,7 @@
       font-weight: bold;
       margin-bottom: 1em;
     }
-    .position {
+    .profession {
       font-size: 1.3em;
       font-weight: bold;
       color: rgb(33, 70, 95);
@@ -77,7 +77,7 @@
     .contact {
       margin-bottom: 1em;
     }
-    .tagline {
+    .summary {
       font-style: italic;
       margin-bottom: 20px;
     }
@@ -88,11 +88,11 @@
   </style>
 </head>
 <body>
-  <div class="header">{{ title }}</div>
-  <div class="position">{{ position }}</div>
+  <div class="header">{{ name }}</div>
+  <div class="profession">{{ profession }}</div>
   <div class="location">{{ location }}</div>
   <div class="contact">{{ email }} | {{ phone }}</div>
-  <div class="tagline">{{ tagline }}</div>
+  <div class="summary">{{ summary }}</div>
 
   <table>
     <tr>
@@ -122,7 +122,7 @@
           <div>
             <strong>{{ edu.institution }}</strong><br>
             {{ edu.qualification }}<br>
-            <small>{{ edu.dates }}</small>
+            <small>{{ edu.start }} - {{ edu.end }}</small>
           </div>
           <br>
         {% endfor %}
@@ -133,16 +133,9 @@
       <td class="section-content">
         {% for exp in experience %}
           <div class="job">
-            <div class="job-title">{{ exp.position }} – {{ exp.company }}</div>
-            <div><small>{{ exp.dates }} | {{ exp.location }}</small></div>
-            <div class="job-summary">{{ exp.summary }}</div>
-            {% if exp.bullets %}
-              <ul>
-                {% for item in exp.bullets %}
-                  <li>{{ item }}</li>
-                {% endfor %}
-              </ul>
-            {% endif %}
+            <div class="job-title">{{ exp.title }} – {{ exp.company }}</div>
+            <div><small>{{ exp.start }} - {{ exp.end }} | {{ exp.location }}</small></div>
+            <div class="job-summary">{{ exp.description | markdown }}</div>
           </div>
         {% endfor %}
       </td>

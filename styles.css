@@ -1,5 +1,6 @@
 @page {
   size: A4;
+  margin: 2em;
 }
 html {
   font-size: {{ _context['font-size'] | default('100%') }};
@@ -108,6 +109,9 @@ ul, li, p {
 }
 .education-qualification {
   font-weight: bold;
+}
+.education-institution {
+  font-style: italic;
 }
 .section {
   margin-bottom: 0.5em;

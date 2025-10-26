@@ -64,7 +64,7 @@
       </div>
 
       {% for section_name, section_value in _context.items() %}
-        {% set other_fields = ['template', 'font_size', 'name', 'profession', 'location', 'email', 'phone', 'linkedin', 'github'] %}
+        {% set other_fields = ['template', 'font_size', 'font-size', 'name', 'profession', 'location', 'email', 'phone', 'linkedin', 'github'] %}
         {% if section_name in other_fields %}
         {% elif section_name == 'experience' %}
           <div class="section experience">

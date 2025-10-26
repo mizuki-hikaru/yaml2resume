@@ -10,8 +10,8 @@ import tempfile
 
 app = FastAPI()
 
-@app.post("/yaml2resume")
-async def yaml2resume(file: UploadFile = File(...), background_tasks: BackgroundTasks = None):
+@app.post("/render")
+async def render(file: UploadFile = File(...), background_tasks: BackgroundTasks = None):
     try:
         temp_dir = tempfile.mkdtemp()
         temp_path = Path(temp_dir)

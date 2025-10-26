@@ -1,0 +1,257 @@
+name: Mizuki Hikaru
+profession: Software Engineer
+location: Sydney, Australia
+email: mizuki@hikaru.org
+linkedin: mizukihikaru
+summary: |
+  Professional Software Developer with 12+ years of experience in designing
+  software applications, and implementing complex features and user interfaces
+  across diverse domains like supply chain logistics, real estate, and
+  cybersecurity. Architected scalable and secure web applications, led
+  cross-functional development teams, resolved bugs, leveraged coding best
+  practices, and optimized system performance for enhanced user experience and
+  operational efficiency. Knowledgeable with multiple programming languages and
+  frameworks. Worked in teams of up to 7 people, on software ranging from
+  serving 3k users per month up to 100k active users per month. Works with AI
+  to cut down development time.
+skills:
+  core-competencies:
+    - Software Development Lifecycle (SLDC)
+    - Full Stack Development
+    - Software Design & Architecture
+    - Object-Oriented Programming (OOP)
+    - Clean Code & Maintainability
+    - Agile Development Methodologies
+    - Microservice Architecture
+    - Progressive Web Apps (PWA)
+    - Framework Design & Prototyping
+    - Code Quality
+    - UI/UX Design
+    - Testing & Debugging
+    - Unit Testing & Test-Driven Development (TDD)
+    - API Design & Integration
+    - CI/CD Pipelines & Infrastructure Automation
+    - Project Management
+    - Information Security
+    - Performance Optimization
+  technical-skills:
+    - Python
+    - JavaScript
+    - TypeScript
+    - PHP
+    - Elixir
+    - C++
+    - PostgreSQL
+    - NoSQL (Redis)
+    - HTML
+    - CSS
+    - Django
+    - Flask
+    - FastAPI
+    - Node.js
+    - React.js
+    - jQuery
+    - Django REST
+    - Framework
+    - CI/CD
+    - AWS
+    - GCP
+    - Git
+    - GitLab
+    - GitHub Docker Raspberry Pi
+    - Selenium
+    - SMTP
+    - DKIM
+    - Nginx
+    - SEO
+    - Oban
+    - Amazon
+    - S3
+    - Blockchain
+    - Ecto
+    - Progressive Web Apps
+experience:
+  - company: TikTok - US Data Security
+    title: Security Engineering Support Engineer
+    start: November 2024
+    location: Sydney, Australia
+    summary: |
+      - Triaged and provided support for on-call tickets spanning 5 different
+        platforms.
+      - Gained experience with analytics platforms such as Grafana.
+      - Deployed cloud services in a complex environment for the purpose of
+        gaining end-to-end experience with internal systems and collecting
+        metrics of the other platforms we use.
+  - company: Tesserent - Cyber Solutions by Thales
+    title: Senior Software Engineer
+    start: April 2023
+    end: April 2024
+    location: Melbourne, Australia
+    summary: |
+      - Designed and implemented backend Python code for a scalable AVD
+        provisioning server, enabling automated deployment of 50 virtual
+        Android devices monthly during testing.
+      - Reduced provisioning creation time by 67% while optimizing the process
+        from 6 minutes to just 2 minutes.
+      - Implemented Django code to power the backend web application server and
+        employed React to improve UI that enhanced overall user interaction
+        with the provisioning platform.
+      - Identified and resolved bugs while implementing large features to
+        ensure platform stability and code quality for at least 50 different
+        features.
+  - company: Distru (Supply Chain & Logistics)
+    title: Senior Software Engineer
+    start: January 2022
+    end: June 2022
+    location: Remote
+    summary: |
+      - Designed and integrated large-scale features and a user-friendly
+        interface for the supply chain logistics application by leveraging
+        Elixir for backend development, TypeScript, and React for frontend for
+        at least 30 different features or issues.
+      - Boosted the rate-limited API layer efficiency, improving both memory
+        consumption and CPU utilization by up to 200%.
+      - Engineered large-scale code refactoring within the Elixir codebase
+        while ensuring maintainability and scalability for future growth.
+        Influenced an Elixir codebase that interacted with a PostgreSQL
+        database using the Ecto ORM.
+      - Executed job processing through the Oban job processor to optimize
+        workflow efficiency by up to 200%.
+  - company: Luxury Escapes
+    title: Senior Software Engineer
+    start: November 2020
+    end: December 2021
+    location: Sydney, Australia
+    summary: |
+      - Co-ordinated the Search API, focusing on improving geolocation search
+        functionalities for properties by employing JavaScript for backend and
+        frontend development, React for the frontend UI, Redis and PostgreSQL
+        databases for data integrity.
+      - Applied new features, and SEO practices, updated sitemaps, and resolved
+        bugs within the search microservice to improve search engine ranking of
+        the real estate listings, leading to an increase in organic traffic by
+        at least 5%.
+  - company: Zero Associates
+    title: Senior Software Engineer
+    start: January 2019
+    end: July 2020
+    location: Melbourne, Australia
+    summary: |
+      - Incorporated Python, Selenium, and Bitcoin daemon to create a
+        proof-of-concept proxy for purchasing items on Amazon with Bitcoin over
+        8 months.
+      - Built and configured a standalone mail server on a Raspberry Pi,
+        incorporating SMTP and DKIM for secure email delivery over 9 months.
+  - company: Loki Network
+    title: Senior Software Engineer
+    start: February 2018
+    end: August 2018
+    location: Melbourne, Australia
+    summary: |
+      - Influenced the local fork of the Monero codebase by integrating
+        specific modifications using C++ developed by the Loki Network to
+        enable incentivized mix network functionality, now used by over 100000
+        users monthly.
+      - Progressed to a team lead position and led a small team of 2 in
+        implementing the core blockchain infrastructure.
+      - Interviewed candidates and hired new talent, fostering a strong
+        development team of 5 people.
+      - Translated technical details and project requirements between
+        developers and higher management while communicating blockers to 3
+        stakeholders and deadlines to 5 team members, ensuring project
+        transparency and progress.
+  - company: B2BPay
+    title: Senior Software Engineer
+    start: May 2017
+    end: July 2017
+    location: Berlin, Germany
+    summary: |
+      - Built backend systems by leveraging JavaScript for backend
+        functionalities, including the creation of APIs and handling of
+        transaction processing.
+  - company: Professional Career Break
+    title: Traveller
+    start: June 2015
+    end: May 2017
+    location: Around the world
+    summary: |
+      - Took a career break to travel the world for two years, gaining diverse
+        cultural insights, and enhancing global awareness.
+  - company: Facebook
+    title: Software Engineer
+    start: August 2014
+    end: June 2015
+    location: Menlo Park, California, USA
+    summary: |
+      - Facilitated the capacity planning team in developing internal software
+        to upgrade data center and network resource allocation.
+      - Helped those planning rack allocation in new data centers through
+        collaborative team efforts while developing front-end applications
+        using JavaScript, and back-end services with PHP and Python.
+  - company: Eudaemonia Research
+    title: Software Engineer
+    start: March 2014
+    end: July 2014
+    location: Sydney, Australia
+    summary: |
+      - Engaged in innovative research, development, and foundation of
+        decentralized exchange (DEX) technology before widespread adoption.
+  - company: Atlassian
+    title: Security Software Engineer
+    start: January 2014
+    end: March 2014
+    location: Sydney, Australia
+    summary: |
+      - Enhanced Software Security by engineering internal software security
+        auditing products written in Python.
+      - Scanned codebases for exploitable vulnerabilities, improving overall
+        application security posture.
+  - company: Climate Change Research Centre at UNSW
+    title: Software Engineer
+    start: January 2013
+    end: September 2013
+    location: Sydney, Australia
+    summary: |
+      - Developed an interactive website using Python and JavaScript to raise
+        awareness about plastic pollution, now seen by at least 3000 visitors
+        each month.
+      - Leveraged climate change research models to calculate the probable
+        destination of plastic debris in the ocean, allowing users to visualize
+        potential environmental impact.
+  - company: Azimuth Security
+    title: Intern Software Engineer
+    start: February 2012
+    end: April 2012
+    location: Lane Cove, NSW, Australia
+    summary: |
+      - Gained valuable hands-on experience developing software security tools
+        during an internship while utilizing C++.
+  - company: Securus Global
+    title: Penetration Tester
+    start: October 2011
+    end: January 2012
+    location: Sydney, Australia
+    summary: |
+      - Improved software security by conducting penetration testing
+        engagements for the identification of security vulnerabilities within
+        the client software.
+      - Generated comprehensive reports outlining the discovered
+        vulnerabilities, potential impact, and recommended risk mitigation
+        strategies.
+  - company: Google
+    title: Intern Software Engineer
+    start: January 2010
+    end: March 2010
+    location: Sydney, Australia
+    summary: |
+      - Added business' logos to Google Maps, C++ in the backend and JavaScript
+        in the frontend.
+education:
+  - institution: University of New South Wales
+    qualification: Bachelor of Science (BS) in Computer Science
+    start: February 2009
+    end: March 2014
+awards:
+  - CSE undergraduate performance award for years 1, 2, & 3 at UNSW
+  - Macquarie & Microsoft performance award for year 2 & 3 at UNSW
+  - International Olympiad in Informatics Gold Medalist in August 2008

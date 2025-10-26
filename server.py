@@ -7,7 +7,6 @@ from pathlib import Path
 from yamldoc import yamldoc
 import shutil
 import tempfile
-import os
 
 app = FastAPI()
 
@@ -23,7 +22,9 @@ async def yaml2resume(file: UploadFile = File(...), background_tasks: Background
 
         output_pdf_path = temp_path / "output.pdf"
 
-        yamldoc(uploaded_file_path, output_pdf_path)
+        template_path = Path("template.html")
+
+        yamldoc(uploaded_file_path, template_path, output_pdf_path)
 
         # Schedule the temp dir to be deleted after response is sent
         background_tasks.add_task(shutil.rmtree, temp_path)

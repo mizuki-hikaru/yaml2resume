@@ -55,6 +55,8 @@
     function handleFiles(files) {
       if (!files || files.length === 0) return;
 
+      let filename = null;
+
       const file = files[0];
       const formData = new FormData();
       formData.append('file', file);
@@ -67,6 +69,8 @@
         if (!response.ok) {
           throw new Error('Upload failed with status ' + response.status);
         }
+        // save the filename from the response object
+        filename = response.headers.get('Content-Disposition').split('filename=')[1];
         return response.blob(); // we expect a binary file (like PDF)
       })
       .then(blob => {
@@ -76,8 +80,8 @@
         // Create a temporary anchor tag to trigger download
         const a = document.createElement('a');
         a.href = downloadUrl;
-        // Use the filename from the server response
-        a.download = file.name;
+        // Use the filename from the response object
+        a.download = filename;
         document.body.appendChild(a);
         a.click();
 

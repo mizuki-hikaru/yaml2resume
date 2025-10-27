@@ -20,17 +20,16 @@ def get_name(uploaded_file_path: Path) -> str:
             name = None
     return name
 
-def calculate_filename(name: str) -> str:
-    if name:
-        parts = name.split()
-        first_name = parts[0]
-        if len(parts) > 1:
-            last_name = parts[-1]
-            filename = f"{first_name}-{last_name}-Resume.pdf"
-        else:
-            filename = f"{first_name}-Resume.pdf"
+def calculate_filename(name: str | None) -> str:
+    if not name:
+        return 'Resume.pdf'
+    parts = name.split()
+    first_name = parts[0]
+    if len(parts) > 1:
+        last_name = parts[-1]
+        filename = f"{first_name}-{last_name}-Resume.pdf"
     else:
-        filename = 'Resume.pdf'
+        filename = f"{first_name}-Resume.pdf"
     return filename
 
 @app.post("/render")

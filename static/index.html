@@ -76,7 +76,8 @@
         // Create a temporary anchor tag to trigger download
         const a = document.createElement('a');
         a.href = downloadUrl;
-        a.download = 'Resume.pdf';
+        // Use the filename from the server response
+        a.download = file.name;
         document.body.appendChild(a);
         a.click();
 

@@ -10,6 +10,29 @@ import tempfile
 
 app = FastAPI()
 
+def get_name(uploaded_file_path: Path) -> str:
+    with uploaded_file_path.open("r") as f:
+        for line in f:
+            if line.startswith("name:"):
+                name = line.split(":")[1].strip()
+                break
+        else:
+            name = None
+    return name
+
+def calculate_filename(name: str) -> str:
+    if name:
+        parts = name.split()
+        first_name = parts[0]
+        if len(parts) > 1:
+            last_name = parts[-1]
+            filename = f"{first_name}-{last_name}-Resume.pdf"
+        else:
+            filename = f"{first_name}-Resume.pdf"
+    else:
+        filename = 'Resume.pdf'
+    return filename
+
 @app.post("/render")
 async def render(file: UploadFile = File(...), background_tasks: BackgroundTasks = None):
     try:
@@ -26,6 +49,9 @@ async def render(file: UploadFile = File(...), background_tasks: BackgroundTasks
 
         yamldoc(uploaded_file_path, template_path, output_pdf_path)
 
+        name = get_name(uploaded_file_path)
+        filename = calculate_filename(name)
+
         # Schedule the temp dir to be deleted after response is sent
         background_tasks.add_task(shutil.rmtree, temp_path)
 
@@ -33,7 +59,7 @@ async def render(file: UploadFile = File(...), background_tasks: BackgroundTasks
         return FileResponse(
             path=output_pdf_path,
             media_type="application/pdf",
-            filename="Resume.pdf",
+            filename=filename,
             background=background_tasks
         )
     except Exception as e:

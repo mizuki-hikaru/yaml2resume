@@ -71,6 +71,8 @@
         }
         // save the filename from the response object
         filename = response.headers.get('Content-Disposition').split('filename=')[1];
+        // remove quotes from the filename
+        filename = filename.replace(/"/g, '');
         return response.blob(); // we expect a binary file (like PDF)
       })
       .then(blob => {

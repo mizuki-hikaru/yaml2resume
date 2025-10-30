@@ -1,0 +1,10 @@
+[Unit]
+Description=YAML to Resume
+
+[Service]
+ExecStart=%h/yaml2resume/env/bin/uvicorn server:app --reload --port 8000
+WorkingDirectory=%h/yaml2resume
+Restart=on-failure
+
+[Install]
+WantedBy=default.target

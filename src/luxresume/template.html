@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>{{ name }}</title>
+    <style>
+      {% include 'styles.css' %}
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <div class="section header">
+        <h1>{{ name }}</h1>
+        <p class="contact-details">
+          {{ profession }} &bull;
+          {{ location }} &bull;
+          <a href="mailto:{{ email }}">{{ email }}</a> &bull;
+          <a href="https://linkedin.com/in/{{ linkedin }}">LinkedIn</a> &bull;
+          <a href="https://github.com/{{ github }}">GitHub</a>
+        </p>
+      </div>
+
+      <div class="section summary">
+        <h2>Summary</h2>
+        {{ mymarkup(summary) }}
+      </div>
+
+      <h2>Skills</h2>
+      <div class="section skills">
+        {% for category, tags in skills.items() %}
+          <div class="skill-category">{{ category.replace('_', ' ').replace('-', ' ').title() }}</div>
+          <div class="skill-tags">
+            {% for tag in tags %}
+              <div class="skill-tag">{{ tag }}</div>
+            {% endfor %}
+          </div>
+        {% endfor %}
+      </div>
+
+      <div class="section experience">
+        <h2>Professional Experience</h2>
+        {% for job in experience %}
+          <div class="job">
+            <div class="job-header">
+              <h3>
+                <span class="job-title">{{ job.title }}</span>
+                <br/>
+                <span class="job-company">{{ job.company }}</span>
+              </h3>
+              <p class="job-meta">
+                {% if job.location %}<span class="job-location">{{ job.location }}</span>{% endif %}
+                {% if job.location and job.start %}<br/>{% endif %}
+                {% if job.start %}<span class="job-dates">{{ job.start }} - {{ job.end or 'Present' }}</span>{% endif %}
+              </p>
+            </div>
+            <div class="job-highlights">
+              <ul>
+                {% for highlight in job.highlights %}
+                  <li>{{ highlight }}</li>
+                {% endfor %}
+              </ul>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+
+      <div class="section education">
+        <h2>Education</h2>
+        {% for edu in education %}
+          <div class="education-item">
+            <h3>
+              <span class="education-qualification">{{ edu.qualification }}</span>
+              <br/>
+              <span class="education-institution">{{ edu.institution }}</span>
+            </h3>
+            <p class="education-meta">
+              {% if edu.location %}<span class="education-location">{{ edu.location }}</span>{% endif %}
+              {% if edu.location and edu.start %}<br/>{% endif %}
+              {% if edu.start %}<span class="education-dates">{{ edu.start }} - {{ edu.end or 'Present' }}</span>{% endif %}
+            </p>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </body>
+</html>
